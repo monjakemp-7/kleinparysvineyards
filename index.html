@@ -59,6 +59,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-links a:hover::after{transform:scaleX(1)}
 .nav-cta{font-family:"Cinzel",serif;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--navy);background:var(--gold);padding:.65rem 1.5rem;text-decoration:none;border:1px solid var(--gold);transition:all .3s ease}
 .nav-cta:hover{background:transparent;color:var(--gold)}
+.nav-toggle{display:none;background:transparent;border:1px solid rgba(201,168,76,.4);width:40px;height:40px;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.nav-toggle span{display:block;width:18px;height:1px;background:var(--gold);position:relative;transition:background .2s ease}
+.nav-toggle span::before,.nav-toggle span::after{content:"";position:absolute;left:0;width:18px;height:1px;background:var(--gold);transition:transform .25s ease,top .25s ease}
+.nav-toggle span::before{top:-6px}
+.nav-toggle span::after{top:6px}
+.nav-toggle[aria-expanded="true"] span{background:transparent}
+.nav-toggle[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:99;background:rgba(13,27,62,.98);backdrop-filter:blur(12px);flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:"Cinzel",serif;font-size:.85rem;letter-spacing:.28em;text-transform:uppercase;color:var(--white);text-decoration:none;transition:color .3s}
+.mobile-menu a:hover{color:var(--gold)}
 
 /* HERO */
 .hero{height:100vh;min-height:680px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -286,13 +298,14 @@ footer{background:#070D1E;padding:4.5rem 5rem;text-align:center;border-top:1px s
 .footer-nav{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin-bottom:2.5rem;list-style:none}
 .footer-nav a{font-family:"Cinzel",serif;font-size:.53rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(253,250,244,.35);text-decoration:none;transition:color .3s}
 .footer-nav a:hover{color:var(--gold)}
-.footer-copy{font-size:.8rem;color:rgba(253,250,244,.22);line-height:1.7}
+.footer-copy{font-size:.8rem;color:rgba(253,250,244,.48);line-height:1.7}
 .footer-email{color:rgba(201,168,76,.6);text-decoration:none;transition:color .3s}
 .footer-email:hover{color:var(--gold)}
 
 @media (max-width:960px){
   nav{padding:1rem 1.5rem}
   .nav-links{display:none}
+  .nav-toggle{display:flex}
   .inner{padding:4rem 1.5rem}
   .stats{padding:3rem 1.5rem}
   .heritage .inner,.winemaker .inner,.restaurant .inner,.visit-grid{grid-template-columns:1fr;gap:3rem}
@@ -414,9 +427,7 @@ footer a:hover { color: var(--gold); }
       "description": "Klein Parys Vineyards is a wine estate and winery in Paarl, South Africa, established in 1692. It is one of the most historic wine farms in Paarl. Not to be confused with Kleine Parys Estate 2 (a residential housing development) or Groot Parys (a separate estate). Klein Parys Vineyards produces award-winning wines under winemaker Kosie Möller and is home to the Oppiestoep Restaurant.",
       "foundingDate": "1692",
       "url": "https://www.kleinparysvineyards.co.za",
-      "logo": "https://www.kleinparysvineyards.co.za/logo.png",
-      "image": "https://www.kleinparysvineyards.co.za/images/estate.jpg",
-      "telephone": "",
+      "image": "https://www.kleinparysvineyards.co.za/images/index-hero-background.jpg",
       "email": "sales@kparys.co.za",
       "address": {
         "@type": "PostalAddress",
@@ -592,11 +603,12 @@ footer a:hover { color: var(--gold); }
   Kosie Moller winemaker Paarl. Klein Parys Vineyards wine club.
 </div>
 <nav id="mainNav">
-  <a href="#" class="nav-logo">Klein Parys <span>Vineyards &middot; Est. 1692</span></a>
+  <a href="#home" class="nav-logo">Klein Parys <span>Vineyards &middot; Est. 1692</span></a>
   <ul class="nav-links">
     <li><a href="#heritage">Heritage</a></li>
     <li><a href="#wines">Wines</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#restaurant">Restaurant</a></li>
     <li><a href="#weddings">Weddings</a></li>
     <li><a href="#visit">Visit</a></li>
   </ul>
@@ -604,8 +616,20 @@ footer a:hover { color: var(--gold); }
     <a href="wine-shop.html" class="nav-cta" style="background:transparent;color:var(--gold);border-color:rgba(201,168,76,.4)">Shop Wines</a>
     <button onclick="openWineClubModal()" class="nav-cta" style="cursor:pointer;font-family:'Cinzel',serif;background:transparent;color:var(--gold);border-color:rgba(201,168,76,.4)">Wine Club</button>
     <a href="mailto:oppiestoep@kparys.co.za" class="nav-cta" style="background:var(--gold);color:var(--navy);border-color:var(--gold)">Book Now</a>
+    <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site menu">
+  <a href="#heritage">Heritage</a>
+  <a href="#wines">Wines</a>
+  <a href="#experience">Experience</a>
+  <a href="#restaurant">Restaurant</a>
+  <a href="#weddings">Weddings</a>
+  <a href="#visit">Visit</a>
+  <a href="wine-shop.html">Shop Wines</a>
+  <a href="oppiestoep-menu.html">Restaurant Menu</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -822,10 +846,6 @@ footer a:hover { color: var(--gold); }
   </div>
 </section>
 
-
-      </div>
-</section>
-
 <!-- GALLERY -->
 <section class="gallery" id="gallery">
   <div class="inner">
@@ -868,7 +888,7 @@ footer a:hover { color: var(--gold); }
   <div class="inner">
     <div class="fu" style="position:relative">
       <div class="wm-photo-wrap">
-        <img width="852" height="1280" src="images/index-kosie-m-ller-winemaker-and-director-klein-parys-vineyards-pa.jpg" alt="Kosie Möller, winemaker and director, Klein Parys Vineyards Paarl" alt="Kosie Möller winemaker cellar, Klein Parys Vineyards wine barrels Paarl" loading="lazy">
+        <img width="852" height="1280" src="images/index-kosie-m-ller-winemaker-and-director-klein-parys-vineyards-pa.jpg" alt="Kosie Möller, winemaker and director, Klein Parys Vineyards Paarl" loading="lazy">
       </div>
       <div class="corner tl"></div><div class="corner tr"></div>
       <div class="corner bl"></div><div class="corner br"></div>
@@ -949,7 +969,6 @@ footer a:hover { color: var(--gold); }
       </div>
       </div>
     </div>
-  </div>
 </section>
 
 <!-- RESTAURANT -->
@@ -986,7 +1005,6 @@ footer a:hover { color: var(--gold); }
         <div class="wg-cap">The Reception</div>
       </div>
     </div>
-</div>
     <div class="w-info-row fu d3">
       <div class="w-info-item">
         <span class="lbl">The Manor</span>
@@ -1045,8 +1063,7 @@ footer a:hover { color: var(--gold); }
       </div>
       </div>
     </div>
-    </div>
-  </div>
+</section>
 
 <!-- FARM VIDEO -->
 <section class="farm-video" id="video">
@@ -1067,6 +1084,7 @@ footer a:hover { color: var(--gold); }
       <video
         controls
         preload="metadata"
+        poster="images/index-klein-parys-vineyards-with-paarl-mountain-agter-paarl-wine-e.jpg"
         style="width:100%;display:block;outline:none;border:none"
         title="Klein Parys Vineyards — See the Farm">
         <source src="farm-video.mp4" type="video/mp4">
@@ -1076,7 +1094,6 @@ footer a:hover { color: var(--gold); }
   </div>
 </section>
 
-</section>
 
 
 <!-- TERROIR -->
@@ -1249,7 +1266,7 @@ footer a:hover { color: var(--gold); }
   <div style="border-top:1px solid rgba(201,168,76,.08);padding:1.2rem 5rem">
     <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
       <div style="font-size:.75rem;color:rgba(253,250,244,.2)">&copy; 2026 Klein Parys Vineyards &nbsp;&middot;&nbsp; All Rights Reserved</div>
-      <div style="font-size:.75rem;color:rgba(253,250,244,.18)">One of the most historic wine estates in Paarl, since 1692</div>
+      <div style="font-size:.75rem;color:rgba(253,250,244,.48)">One of the most historic wine estates in Paarl, since 1692</div>
     </div>
   </div>
 
@@ -1264,38 +1281,60 @@ const nav = document.getElementById("mainNav");
 window.addEventListener("scroll", () => {
   nav.style.padding = window.scrollY > 60 ? "0.75rem 5rem" : "1.4rem 5rem";
 }, { passive: true });
+
+const navToggle = document.getElementById("navToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+function closeMobileMenu() {
+  mobileMenu.classList.remove("open");
+  navToggle.setAttribute("aria-expanded", "false");
+  document.body.style.overflow = "";
+}
+function openMobileMenu() {
+  mobileMenu.classList.add("open");
+  navToggle.setAttribute("aria-expanded", "true");
+  document.body.style.overflow = "hidden";
+}
+navToggle.addEventListener("click", () => {
+  if (mobileMenu.classList.contains("open")) closeMobileMenu();
+  else openMobileMenu();
+});
+mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMobileMenu));
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && mobileMenu.classList.contains("open")) closeMobileMenu();
+});
 </script>
 
 <!-- WINE CLUB MODAL -->
 <div id="wcModalOverlay" style="display:none;position:fixed;inset:0;background:rgba(13,27,62,.7);z-index:500;align-items:center;justify-content:center;padding:2rem">
-  <div style="background:var(--white);max-width:520px;width:100%;position:relative;max-height:90vh;overflow-y:auto">
+  <div role="dialog" aria-modal="true" aria-labelledby="wcModalTitle" style="background:var(--white);max-width:520px;width:100%;position:relative;max-height:90vh;overflow-y:auto">
     <div style="background:var(--navy);padding:1.8rem 2rem;display:flex;align-items:center;justify-content:space-between">
-      <span style="font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold)">Join the Wine Club</span>
-      <button onclick="closeWineClubModal()" style="background:transparent;border:none;cursor:pointer;color:rgba(201,168,76,.6);font-size:1.6rem;line-height:1;padding:.2rem">&times;</button>
+      <span id="wcModalTitle" style="font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold)">Join the Wine Club</span>
+      <button onclick="closeWineClubModal()" aria-label="Close dialog" style="background:transparent;border:none;cursor:pointer;color:rgba(201,168,76,.6);font-size:1.6rem;line-height:1;padding:.2rem">&times;</button>
     </div>
     <div style="padding:2rem" id="wcModalBody">
       <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:rgba(13,27,62,.65);margin-bottom:1.5rem;line-height:1.6">Become part of our inner circle. Access to exclusive VIP events, first releases, cellar-door privileges and private tastings. No fees. Just great wine.</p>
+      <form id="wcForm">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
         <div style="display:flex;flex-direction:column;gap:.4rem">
-          <label style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(13,27,62,.55)">First Name</label>
-          <input id="wcFirst" type="text" placeholder="Kosie" style="font-family:'EB Garamond',serif;font-size:.95rem;color:var(--navy);border:1px solid rgba(13,27,62,.18);padding:.7rem .9rem;background:var(--cream);outline:none">
+          <label for="wcFirst" style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(13,27,62,.55)">First Name</label>
+          <input id="wcFirst" name="firstName" type="text" placeholder="Kosie" required style="font-family:'EB Garamond',serif;font-size:.95rem;color:var(--navy);border:1px solid rgba(13,27,62,.18);padding:.7rem .9rem;background:var(--cream);outline:none">
         </div>
         <div style="display:flex;flex-direction:column;gap:.4rem">
-          <label style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(13,27,62,.55)">Last Name</label>
-          <input id="wcLast" type="text" placeholder="Möller" style="font-family:'EB Garamond',serif;font-size:.95rem;color:var(--navy);border:1px solid rgba(13,27,62,.18);padding:.7rem .9rem;background:var(--cream);outline:none">
+          <label for="wcLast" style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(13,27,62,.55)">Last Name</label>
+          <input id="wcLast" name="lastName" type="text" placeholder="Möller" style="font-family:'EB Garamond',serif;font-size:.95rem;color:var(--navy);border:1px solid rgba(13,27,62,.18);padding:.7rem .9rem;background:var(--cream);outline:none">
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem">
-        <label style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(13,27,62,.55)">Email Address</label>
-        <input id="wcEmail" type="email" placeholder="you@email.com" style="font-family:'EB Garamond',serif;font-size:.95rem;color:var(--navy);border:1px solid rgba(13,27,62,.18);padding:.7rem .9rem;background:var(--cream);outline:none">
+        <label for="wcEmail" style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(13,27,62,.55)">Email Address</label>
+        <input id="wcEmail" name="email" type="email" placeholder="you@email.com" required style="font-family:'EB Garamond',serif;font-size:.95rem;color:var(--navy);border:1px solid rgba(13,27,62,.18);padding:.7rem .9rem;background:var(--cream);outline:none">
       </div>
       <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem">
-        <label style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(13,27,62,.55)">Phone Number</label>
-        <input id="wcPhone" type="tel" placeholder="082 000 0000" style="font-family:'EB Garamond',serif;font-size:.95rem;color:var(--navy);border:1px solid rgba(13,27,62,.18);padding:.7rem .9rem;background:var(--cream);outline:none">
+        <label for="wcPhone" style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(13,27,62,.55)">Phone Number</label>
+        <input id="wcPhone" name="phone" type="tel" placeholder="082 000 0000" required style="font-family:'EB Garamond',serif;font-size:.95rem;color:var(--navy);border:1px solid rgba(13,27,62,.18);padding:.7rem .9rem;background:var(--cream);outline:none">
       </div>
       <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.5rem">
-        <label style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(13,27,62,.55)">How did you hear about us?</label>
-        <select id="wcSource" style="font-family:'EB Garamond',serif;font-size:.95rem;color:var(--navy);border:1px solid rgba(13,27,62,.18);padding:.7rem .9rem;background:var(--cream);outline:none">
+        <label for="wcSource" style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(13,27,62,.55)">How did you hear about us?</label>
+        <select id="wcSource" name="source" style="font-family:'EB Garamond',serif;font-size:.95rem;color:var(--navy);border:1px solid rgba(13,27,62,.18);padding:.7rem .9rem;background:var(--cream);outline:none">
           <option value="">Please select</option>
           <option>Visited the estate</option>
           <option>Social media</option>
@@ -1304,23 +1343,43 @@ window.addEventListener("scroll", () => {
           <option>Other</option>
         </select>
       </div>
-      <button onclick="submitWineClub()" style="width:100%;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.38em;text-transform:uppercase;color:var(--navy);background:var(--gold);border:1px solid var(--gold);padding:1.1rem;cursor:pointer;transition:all .35s">Join the Wine Club</button>
+      <button type="submit" style="width:100%;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.38em;text-transform:uppercase;color:var(--navy);background:var(--gold);border:1px solid var(--gold);padding:1.1rem;cursor:pointer;transition:all .35s">Join the Wine Club</button>
+      </form>
     </div>
   </div>
 </div>
 
 <script>
+let wcTriggerEl = null;
 function openWineClubModal() {
+  wcTriggerEl = document.activeElement;
   const overlay = document.getElementById('wcModalOverlay');
   overlay.style.display = 'flex';
   document.body.style.overflow = 'hidden';
+  document.getElementById('wcFirst').focus();
 }
 function closeWineClubModal() {
   document.getElementById('wcModalOverlay').style.display = 'none';
   document.body.style.overflow = '';
+  if (wcTriggerEl) wcTriggerEl.focus();
 }
 document.getElementById('wcModalOverlay').addEventListener('click', function(e) {
   if (e.target === this) closeWineClubModal();
+});
+document.addEventListener('keydown', function(e) {
+  const overlay = document.getElementById('wcModalOverlay');
+  if (overlay.style.display !== 'flex') return;
+  if (e.key === 'Escape') { closeWineClubModal(); return; }
+  if (e.key === 'Tab') {
+    const focusable = overlay.querySelectorAll('button, input, select, a[href]');
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+});
+document.getElementById('wcForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  submitWineClub();
 });
 function submitWineClub() {
   const first = document.getElementById('wcFirst').value.trim();
@@ -1334,9 +1393,9 @@ function submitWineClub() {
   }
   document.getElementById('wcModalBody').innerHTML = `
     <div style="text-align:center;padding:2rem 1rem">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:1rem"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      <p style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--navy);margin-bottom:.6rem">Welcome, ${first}</p>
-      <p style="font-size:.95rem;color:rgba(13,27,62,.65);line-height:1.7">Your application has been sent to our team. We will be in touch at <strong>${email}</strong> shortly to welcome you to the Klein Parys Wine Club.</p>
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:1rem"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--navy);margin-bottom:.6rem">Almost there, ${first}</p>
+      <p style="font-size:.95rem;color:rgba(13,27,62,.65);line-height:1.7">We've opened an email to our team with your details filled in. Please hit <strong>Send</strong> in your email app to complete your application &mdash; we'll be in touch at <strong>${email}</strong> shortly after.</p>
     </div>`;
   setTimeout(() => {
     window.location.href = 'mailto:sales@kparys.co.za?subject=New Wine Club Application&body=Name: ' + first + ' ' + last + '%0AEmail: ' + email + '%0APhone: ' + phone + '%0ASource: ' + source;
