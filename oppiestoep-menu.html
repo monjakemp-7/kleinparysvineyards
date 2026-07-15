@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oppiestoep Menu | Klein Parys Vineyards, Paarl</title>
+<meta name="description" content="Oppiestoep Restaurant menu at Klein Parys Vineyards, Paarl. Breakfast, lunch, pizza, cocktails and wines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-lt:#DFC070;--gold-pale:#F2E4BB;--gold-dk:#8B6914;--navy:#0D1B3E;--cream:#F8F3E8;--cream-dk:#EDE5D0;--white:#FDFAF4}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"EB Garamond",Georgia,serif;background:var(--cream);color:var(--navy)}
+.site-header{background:var(--navy);padding:1rem 4rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(201,168,76,.18)}
+.header-logo{font-family:"Cinzel",serif;font-size:1rem;letter-spacing:.22em;color:var(--gold);text-decoration:none;line-height:1.2}
+.header-logo span{display:block;font-size:.5rem;letter-spacing:.55em;color:rgba(201,168,76,.45);margin-top:3px}
+.header-back{font-family:"Cinzel",serif;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);background:transparent;padding:.65rem 1.5rem;text-decoration:none;border:1px solid rgba(201,168,76,.4);transition:all .3s;display:flex;align-items:center;gap:.5rem}
+.header-back:hover{background:rgba(201,168,76,.1);border-color:var(--gold)}
+.menu-hero{background:var(--navy);padding:4rem 5rem 3rem;text-align:center;position:relative;overflow:hidden}
+.menu-hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(201,168,76,.025) 40px,rgba(201,168,76,.025) 41px)}
+.hero-eyebrow{font-family:"Cinzel",serif;font-size:.58rem;letter-spacing:.65em;color:var(--gold);text-transform:uppercase;margin-bottom:1.2rem;position:relative}
+.hero-rule{display:flex;align-items:center;justify-content:center;gap:.8rem;margin-bottom:1.8rem}
+.hero-rule-line{width:55px;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,.6))}
+.hero-rule-line.r{background:linear-gradient(to left,transparent,rgba(201,168,76,.6))}
+.hero-diamond{width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+.menu-title{font-family:"Cormorant Garamond",serif;font-size:clamp(2.8rem,5vw,5rem);font-weight:300;color:var(--white);line-height:1;margin-bottom:.5rem;position:relative}
+.menu-title em{font-style:italic;color:var(--gold-lt)}
+.menu-subtitle{font-family:"Cormorant Garamond",serif;font-size:1.1rem;font-style:italic;color:rgba(253,250,244,.5);letter-spacing:.1em;margin-bottom:1.5rem;position:relative}
+.hours-strip{background:var(--gold);padding:.75rem 3rem;display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap}
+.hs-item{font-family:"Cinzel",serif;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--navy)}
+.hs-sep{width:4px;height:4px;background:rgba(13,27,62,.3);transform:rotate(45deg);flex-shrink:0}
+.menu-nav{background:var(--white);border-bottom:1px solid rgba(13,27,62,.08);position:sticky;top:62px;z-index:50}
+.menu-nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:0;overflow-x:auto;padding:0 2rem;scrollbar-width:none}
+.menu-nav-inner::-webkit-scrollbar{display:none}
+.mtab{font-family:"Cinzel",serif;font-size:.53rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(13,27,62,.5);padding:1rem 1.3rem;text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:all .3s}
+.mtab:hover,.mtab.active{color:var(--gold-dk);border-bottom-color:var(--gold)}
+.sec{max-width:1100px;margin:0 auto;padding:4rem 3rem}
+.sec-header{text-align:center;margin-bottom:2.5rem}
+.sec-lbl{font-family:"Cinzel",serif;font-size:.55rem;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem;display:block}
+.sec-h2{font-family:"Cormorant Garamond",serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--navy);margin-bottom:.8rem}
+.sec-h2 em{font-style:italic;color:var(--gold-dk)}
+.sec-rule{display:flex;align-items:center;justify-content:center;gap:.8rem}
+.sec-rule .l{width:55px;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,.4))}
+.sec-rule .l.r{background:linear-gradient(to left,transparent,rgba(201,168,76,.4))}
+.sec-rule .d{width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg)}
+.sec-note{font-size:.88rem;font-style:italic;color:rgba(13,27,62,.5);text-align:center;margin-top:.7rem}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(13,27,62,.06);margin-bottom:1px}
+.mg.single{grid-template-columns:1fr}
+.mg.three{grid-template-columns:repeat(3,1fr)}
+.cat{background:var(--white);padding:2.2rem 2rem}
+.cat.dark{background:var(--navy)}
+.cat.tinted{background:var(--cream-dk)}
+.cat-title{font-family:"Cinzel",serif;font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;padding-bottom:.7rem;border-bottom:1px solid rgba(201,168,76,.2)}
+.cat.dark .cat-title{border-bottom-color:rgba(201,168,76,.15);color:var(--gold-lt)}
+.mi{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.65rem 0;border-bottom:1px solid rgba(13,27,62,.06)}
+.mi:last-child{border-bottom:none}
+.cat.dark .mi{border-bottom-color:rgba(201,168,76,.07)}
+.mi-left{flex:1}
+.mi-name{font-family:"EB Garamond",serif;font-size:1rem;font-weight:500;color:var(--navy);line-height:1.2}
+.cat.dark .mi-name{color:var(--white)}
+.mi-desc{font-family:"EB Garamond",serif;font-size:.85rem;font-style:italic;color:rgba(13,27,62,.5);margin-top:.1rem;line-height:1.4}
+.cat.dark .mi-desc{color:rgba(253,250,244,.45)}
+.mi-price{font-family:"Cormorant Garamond",serif;font-size:1.05rem;font-weight:500;color:var(--gold-dk);white-space:nowrap;flex-shrink:0}
+.cat.dark .mi-price{color:var(--gold-lt)}
+.sdiv{height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,.2),transparent);margin:0 3rem}
+.wine-sec{background:var(--navy)}
+.wine-range{margin-bottom:2.5rem}
+.wine-range-title{font-family:"Cinzel",serif;font-size:.62rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;padding-bottom:.7rem;border-bottom:1px solid rgba(201,168,76,.18)}
+.wine-sub{font-family:"Cinzel",serif;font-size:.52rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(201,168,76,.6);margin:1rem 0 .5rem}
+.wg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px}
+.wi{padding:.9rem 1.1rem;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.07)}
+.wi-name{font-family:"EB Garamond",serif;font-size:1rem;color:var(--white);margin-bottom:.15rem}
+.wi-sub{font-size:.8rem;font-style:italic;color:rgba(253,250,244,.4)}
+.wi-price{font-family:"Cormorant Garamond",serif;font-size:1rem;color:var(--gold-lt);margin-top:.2rem}
+.wi-badge{font-family:"Cinzel",serif;font-size:.42rem;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);padding:.15rem .45rem;display:inline-block;margin-top:.25rem}
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(13,27,62,.06)}
+.ci{background:var(--white);padding:1.4rem}
+.ci-name{font-family:"Cinzel",serif;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--navy);margin-bottom:.25rem}
+.ci-desc{font-size:.83rem;font-style:italic;color:rgba(13,27,62,.5);margin-bottom:.4rem}
+.ci-price{font-family:"Cormorant Garamond",serif;font-size:1.05rem;color:var(--gold-dk)}
+.mfooter{background:#070D1E;padding:2.5rem 4rem;text-align:center;border-top:1px solid rgba(201,168,76,.12)}
+.mfooter-logo{font-family:"Cinzel",serif;font-size:1rem;letter-spacing:.28em;color:var(--gold);margin-bottom:.3rem}
+.mfooter-sub{font-family:"Cinzel",serif;font-size:.48rem;letter-spacing:.55em;color:rgba(201,168,76,.35);text-transform:uppercase;margin-bottom:.8rem}
+.mfooter-copy{font-size:.8rem;color:rgba(253,250,244,.22)}
+.mfooter-email{color:rgba(201,168,76,.6);text-decoration:none}
+@media(max-width:768px){
+  .site-header,.menu-hero,.hours-strip,.sec,.mfooter{padding-left:1.5rem;padding-right:1.5rem}
+  .mg,.mg.three,.wg,.cg{grid-template-columns:1fr}
+  .mtab{padding:.9rem .8rem;font-size:.5rem}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="index.html" class="header-logo">Klein Parys <span>Vineyards &middot; Est. 1692</span></a>
+  <a href="index.html" class="header-back">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Site
+  </a>
+</header>
+
+<div class="menu-hero">
+  <p class="hero-eyebrow">Oppiestoep @ Klein Parys Vineyards</p>
+  <div class="hero-rule"><div class="hero-rule-line"></div><div class="hero-diamond"></div><div class="hero-rule-line r"></div></div>
+  <h1 class="menu-title">Our <em>Menu</em></h1>
+  <p class="menu-subtitle">Honest food, proudly South African</p>
+  <p style="font-family:'Cinzel',serif;font-size:.53rem;letter-spacing:.4em;color:rgba(201,168,76,.5);text-transform:uppercase;position:relative">8 Jan Van Riebeeck Dr, Paarl, 7646 &nbsp;&middot;&nbsp; oppiestoep@kparys.co.za</p>
+</div>
+
+<div style="background:var(--navy);padding:.6rem 3rem;text-align:right">
+  <a href="Oppiestoep_Restaurant_Menu.pdf" download style="font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(201,168,76,.35);padding:.5rem 1.1rem;transition:all .3s">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download PDF Menu
+  </a>
+</div>
+<div class="hours-strip">
+  <span class="hs-item">Sun &amp; Mon: Closed</span><div class="hs-sep"></div>
+  <span class="hs-item">Tue &ndash; Thu: 08h00 to 17h00</span><div class="hs-sep"></div>
+  <span class="hs-item">Fri: 08h00 to 18h00</span><div class="hs-sep"></div>
+  <span class="hs-item">Sat: 09h00 to 15h00</span>
+</div>
+
+<nav class="menu-nav">
+  <div class="menu-nav-inner">
+    <a href="#breakfast" class="mtab">Breakfast</a>
+    <a href="#lunch" class="mtab">Lunch</a>
+    <a href="#pizza" class="mtab">Pizza</a>
+    <a href="#little-ones" class="mtab">Little Ones</a>
+    <a href="#cocktails" class="mtab">Cocktails</a>
+    <a href="#drinks" class="mtab">Drinks</a>
+    <a href="#winelist" class="mtab">Wine List</a>
+  </div>
+</nav>
+
+<!-- BREAKFAST -->
+<section id="breakfast">
+  <div class="sec">
+    <div class="sec-header">
+      <span class="sec-lbl">Morning</span>
+      <h2 class="sec-h2">Breakfast <em>&amp; Brunch</em></h2>
+      <div class="sec-rule"><div class="l"></div><div class="d"></div><div class="l r"></div></div>
+      <p class="sec-note">Served all day &nbsp;&middot;&nbsp; Allergen info available on request</p>
+    </div>
+    <div class="mg">
+      <div class="cat">
+        <div class="cat-title">From the Kitchen</div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Farmers Brekkie</div><div class="mi-desc">Boerewors, back bacon, eggs, mushrooms, tomato relish &amp; freshly baked loaf</div></div><div class="mi-price">R125</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Eggs Benedict</div><div class="mi-desc">Poached eggs, parma ham, hollandaise sauce &amp; fresh rocket on an English muffin</div></div><div class="mi-price">R145</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Pita Brekkie</div><div class="mi-desc">Pita bread, tomato relish, scrambled eggs, avocado, streaky bacon and fresh rocket</div></div><div class="mi-price">R135</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Roosterkoek Brekkie</div><div class="mi-desc">Roosterkoek, tomato relish, eggs, cheddar cheese &amp; streaky bacon</div></div><div class="mi-price">R120</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Plankie Brood</div><div class="mi-desc">Freshly baked farm loaf, butter, cheese with relish and berry jam</div></div><div class="mi-price">R125</div></div>
+      </div>
+      <div class="cat tinted">
+        <div class="cat-title">Lighter Options</div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Granola</div><div class="mi-desc">Double thick yoghurt, fresh fruit, granola &amp; honey drizzled over</div></div><div class="mi-price">R105</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="sdiv"></div>
+
+<!-- LUNCH -->
+<section id="lunch">
+  <div class="sec">
+    <div class="sec-header">
+      <span class="sec-lbl">Midday</span>
+      <h2 class="sec-h2">Lunch <em>&amp; Mains</em></h2>
+      <div class="sec-rule"><div class="l"></div><div class="d"></div><div class="l r"></div></div>
+    </div>
+    <div class="mg">
+      <div class="cat dark">
+        <div class="cat-title">Salads &amp; Mains</div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Chicken Salad</div><div class="mi-desc">Grilled chicken breast, avocado, tomato, peppadews, cucumber, red onion, carrot, feta</div></div><div class="mi-price">R135</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Chicken Roosterkoek</div><div class="mi-desc">Grilled chicken breast, camembert cheese, pickled cucumber, red onion, rocket &amp; mustard</div></div><div class="mi-price">R145</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Beef Burger</div><div class="mi-desc">Beef patty, cheddar, streaky bacon, caramelized onion, rocket with rustic fries</div></div><div class="mi-price">R155</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Double Smash Burger</div><div class="mi-desc">2 x smash patties, caramelized onion, tomato relish, cheddar, gherkins &amp; rustic fries</div></div><div class="mi-price">R170</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Parys Platter <em style="font-size:.82rem">(serves 4)</em></div><div class="mi-desc">Chicken strips, crumbed mushroom, sosaties, mini pies, freshly baked mini loaves with relish &amp; rustic fries</div></div><div class="mi-price">R400</div></div>
+      </div>
+      <div class="cat"></div>
+    </div>
+  </div>
+</section>
+<div class="sdiv"></div>
+
+<!-- PIZZA -->
+<section id="pizza" style="background:var(--cream-dk)">
+  <div class="sec">
+    <div class="sec-header">
+      <span class="sec-lbl">Stone-baked</span>
+      <h2 class="sec-h2">Pizzas <em>from the Oven</em></h2>
+      <div class="sec-rule"><div class="l"></div><div class="d"></div><div class="l r"></div></div>
+    </div>
+    <div class="mg three">
+      <div class="cat"><div class="mi"><div class="mi-left"><div class="mi-name">Bacon, Avo &amp; Feta</div></div><div class="mi-price">R135</div></div></div>
+      <div class="cat"><div class="mi"><div class="mi-left"><div class="mi-name">Boerewors, Caramelized Onion, Feta &amp; Rocket</div></div><div class="mi-price">R145</div></div></div>
+      <div class="cat"><div class="mi"><div class="mi-left"><div class="mi-name">Parma Ham, Rocket, Camembert &amp; Balsamic Reduction</div></div><div class="mi-price">R165</div></div></div>
+      <div class="cat"><div class="mi"><div class="mi-left"><div class="mi-name">BBQ Grilled Chicken Breast, Yellow Peppers &amp; Red Onion</div></div><div class="mi-price">R145</div></div></div>
+    </div>
+  </div>
+</section>
+<div class="sdiv"></div>
+
+<!-- LITTLE ONES -->
+<section id="little-ones">
+  <div class="sec">
+    <div class="sec-header">
+      <span class="sec-lbl">For the Kids</span>
+      <h2 class="sec-h2">Little <em>Ones</em></h2>
+      <div class="sec-rule"><div class="l"></div><div class="d"></div><div class="l r"></div></div>
+    </div>
+    <div class="mg three">
+      <div class="cat"><div class="mi"><div class="mi-left"><div class="mi-name">Chicken Strips &amp; Chips</div></div><div class="mi-price">R75</div></div></div>
+      <div class="cat"><div class="mi"><div class="mi-left"><div class="mi-name">Pita Bread Toastie</div><div class="mi-desc">Bacon &amp; cheese &nbsp;&middot;&nbsp; Add fries +R20</div></div><div class="mi-price">R65</div></div></div>
+      <div class="cat"><div class="mi"><div class="mi-left"><div class="mi-name">Pizza</div><div class="mi-desc">Cheddar cheese and bacon bits</div></div><div class="mi-price">R85</div></div></div>
+    </div>
+  </div>
+</section>
+<div class="sdiv"></div>
+
+<!-- COCKTAILS -->
+<section id="cocktails" style="background:var(--cream-dk)">
+  <div class="sec">
+    <div class="sec-header">
+      <span class="sec-lbl">Raise a Glass</span>
+      <h2 class="sec-h2">Champagne <em>Cocktails</em></h2>
+      <div class="sec-rule"><div class="l"></div><div class="d"></div><div class="l r"></div></div>
+      <p class="sec-note">All cocktails made with Klein Parys Charmat Selection</p>
+    </div>
+    <div class="cg">
+      <div class="ci"><div class="ci-name">Mimosa</div><div class="ci-desc">Charmat + orange juice</div><div class="ci-price">R70</div></div>
+      <div class="ci"><div class="ci-name">Bellini</div><div class="ci-desc">Charmat + peach pur&eacute;e</div><div class="ci-price">R75</div></div>
+      <div class="ci"><div class="ci-name">Kir Royale</div><div class="ci-desc">Charmat + cr&egrave;me de cassis</div><div class="ci-price">R75</div></div>
+      <div class="ci"><div class="ci-name">Aperol</div><div class="ci-desc">Charmat + Aperol + soda</div><div class="ci-price">R85</div></div>
+      <div class="ci"><div class="ci-name">French 75</div><div class="ci-desc">Charmat + gin + lemon syrup</div><div class="ci-price">R85</div></div>
+      <div class="ci"><div class="ci-name">Charmat Mojito</div><div class="ci-desc">Charmat + rum + lime</div><div class="ci-price">R85</div></div>
+    </div>
+  </div>
+</section>
+<div class="sdiv"></div>
+
+<!-- DRINKS -->
+<section id="drinks">
+  <div class="sec">
+    <div class="sec-header">
+      <span class="sec-lbl">Beverages</span>
+      <h2 class="sec-h2">Drinks <em>Menu</em></h2>
+      <div class="sec-rule"><div class="l"></div><div class="d"></div><div class="l r"></div></div>
+    </div>
+    <div class="mg">
+      <div class="cat">
+        <div class="cat-title">Hot Drinks</div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Tea</div><div class="mi-desc">English / Rooibos</div></div><div class="mi-price">R25</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Cappuccino</div></div><div class="mi-price">R35</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Boeretroos / Coffee</div><div class="mi-desc">Add Kondensmelk +R10</div></div><div class="mi-price">R30</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Latte</div></div><div class="mi-price">R35</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Hot Chocolate</div></div><div class="mi-price">R40</div></div>
+        <div class="cat-title" style="margin-top:1.5rem">Cold Drinks</div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Soft Drinks 300ml</div><div class="mi-desc">Coke, Coke Zero, Cr&egrave;me Soda, Fanta Orange, Sprite</div></div><div class="mi-price">R25</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Still / Sparkling Water</div></div><div class="mi-price">R20</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Mix Soft Drinks 200ml</div><div class="mi-desc">Dry Lemon, Ginger Ale, Lemonade, Tonic, Tonic Free</div></div><div class="mi-price">R20</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Appletiser</div></div><div class="mi-price">R30</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Rock Shandy</div></div><div class="mi-price">R45</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Ice Tea</div><div class="mi-desc">Lemon / Peach</div></div><div class="mi-price">R30</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Cordials</div><div class="mi-desc">Cola Tonic, Lime, Passion Fruit</div></div><div class="mi-price">R15</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Milkshakes</div><div class="mi-desc">Chocolate, Mixed Berry, Vanilla</div></div><div class="mi-price">R55</div></div>
+      </div>
+      <div class="cat dark">
+        <div class="cat-title">Alcohol</div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Beers</div><div class="mi-desc">Castle, Castle Light, Amstel, Black Label, Hansa</div></div><div class="mi-price">R35</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Ciders — Flying Fish / Hunters Gold</div></div><div class="mi-price">R35</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Ciders — Savanna Dry / Savanna Light</div></div><div class="mi-price">R40</div></div>
+        <div class="cat-title" style="margin-top:1.5rem">Spirits</div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Oloff Bergh</div></div><div class="mi-price">R25</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">KWV 3 Year</div></div><div class="mi-price">R25</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">KWV 5 Year</div></div><div class="mi-price">R30</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Gin</div></div><div class="mi-price">R30</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Vodka</div></div><div class="mi-price">R30</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Red Heart Rum</div></div><div class="mi-price">R30</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Spice Gold Rum</div></div><div class="mi-price">R30</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Bells Whisky</div></div><div class="mi-price">R30</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Jameson Whisky</div></div><div class="mi-price">R40</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Jagermeister</div></div><div class="mi-price">R30</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">Tequila</div></div><div class="mi-price">R30</div></div>
+        <div class="cat-title" style="margin-top:1.5rem">Specials</div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">2 x Double Brandy &amp; Mix</div></div><div class="mi-price">R80</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">2 x Double Gin &amp; Mix</div></div><div class="mi-price">R90</div></div>
+        <div class="mi"><div class="mi-left"><div class="mi-name">2 x Double Vodka &amp; Mix</div></div><div class="mi-price">R90</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="sdiv"></div>
+
+<!-- WINE LIST -->
+<section id="winelist" class="wine-sec">
+  <div class="sec">
+    <div class="sec-header">
+      <span class="sec-lbl" style="color:var(--gold)">Straight from the Cellar</span>
+      <h2 class="sec-h2" style="color:var(--white)">Klein Parys <em>Wine List</em></h2>
+      <div class="sec-rule">
+        <div class="l" style="background:linear-gradient(to right,transparent,rgba(201,168,76,.4))"></div>
+        <div class="d"></div>
+        <div class="l r" style="background:linear-gradient(to left,transparent,rgba(201,168,76,.4))"></div>
+      </div>
+    </div>
+    <div class="wine-range">
+      <div class="wine-range-title">Estate Collection</div>
+      <div class="wine-sub">White Wines</div>
+      <div class="wg">
+        <div class="wi"><div class="wi-name">Chenin Blanc</div><div class="wi-sub">Gold award winner</div><div class="wi-price">R125</div></div>
+        <div class="wi"><div class="wi-name">Chardonnay</div><div class="wi-price">R120</div></div>
+        <div class="wi"><div class="wi-name">Sauvignon Blanc</div><div class="wi-price">R125</div></div>
+      </div>
+      <div class="wine-sub" style="margin-top:1.2rem">Bubbles</div>
+      <div class="wg">
+        <div class="wi"><div class="wi-name">Charmat Selection</div><div class="wi-sub">Gold award winner</div><div class="wi-price">R130</div></div>
+      </div>
+      <div class="wine-sub" style="margin-top:1.2rem">Red Wines</div>
+      <div class="wg">
+        <div class="wi"><div class="wi-name">Shiraz</div><div class="wi-sub">Gold award winner</div><div class="wi-price">R125</div></div>
+        <div class="wi"><div class="wi-name">Merlot</div><div class="wi-price">R125</div></div>
+        <div class="wi"><div class="wi-name">Cabernet Sauvignon</div><div class="wi-price">R125</div></div>
+      </div>
+    </div>
+    <div class="wine-range">
+      <div class="wine-range-title">Family Collection</div>
+      <div class="wg">
+        <div class="wi"><div class="wi-name">Beatrix Selection</div><div class="wi-sub">Merlot / Cabernet Sauvignon / Shiraz</div><div class="wi-price">R270</div></div>
+        <div class="wi"><div class="wi-name">Niclas Selection</div><div class="wi-sub">Syrah / Merlot</div><div class="wi-price">R270</div></div>
+        <div class="wi"><div class="wi-name">Jacob Selection</div><div class="wi-sub">Pinotage / Shiraz</div><div class="wi-price">R270</div></div>
+      </div>
+    </div>
+    <div class="wine-range">
+      <div class="wine-range-title">House Wine <span style="opacity:.5;font-family:'EB Garamond',serif;font-size:.9em;letter-spacing:.05em">(when available)</span></div>
+      <div class="wg">
+        <div class="wi"><div class="wi-name">Cape Pearl Chardonnay</div><div class="wi-price">R70</div></div>
+        <div class="wi"><div class="wi-name">Cape Pearl Dry Red</div><div class="wi-price">R70</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="mfooter">
+  <div class="mfooter-logo">Klein Parys Vineyards</div>
+  <div class="mfooter-sub">Oppiestoep Restaurant &middot; Est. 1692, Paarl</div>
+  <div class="mfooter-copy">8 Jan Van Riebeeck Dr, Paarl, 7646 &nbsp;&middot;&nbsp; <a href="mailto:oppiestoep@kparys.co.za" class="mfooter-email">oppiestoep@kparys.co.za</a></div>
+</footer>
+
+<script>
+const tabs = document.querySelectorAll('.mtab');
+const secs = ['breakfast','lunch','pizza','little-ones','cocktails','drinks','winelist'];
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(id => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= 130) cur = id; });
+  tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#' + cur));
+}, {passive:true});
+</script>
+</body>
+</html>
