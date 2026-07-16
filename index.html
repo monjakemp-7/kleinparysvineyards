@@ -75,6 +75,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .mobile-menu.open{display:flex}
 .mobile-menu a{font-family:"Cinzel",serif;font-size:.85rem;letter-spacing:.28em;text-transform:uppercase;color:var(--white);text-decoration:none;transition:color .3s}
 .mobile-menu a:hover{color:var(--gold)}
+.mobile-menu button{font-family:"Cinzel",serif;font-size:.85rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);background:transparent;border:1px solid rgba(201,168,76,.4);padding:.7rem 1.6rem;cursor:pointer;transition:color .3s}
+.mobile-menu button:hover{color:var(--white)}
 
 /* HERO */
 .hero{height:100vh;min-height:680px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -90,6 +92,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .hero-diamond{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
 .hero-title{font-family:"Cormorant Garamond",serif;font-size:clamp(3.8rem,8vw,7.5rem);font-weight:300;color:var(--white);line-height:.95;letter-spacing:.02em;margin-bottom:.6rem}
 .hero-title em{font-style:italic;color:var(--gold-lt)}
+.hero-crest{display:block;margin:0 auto .6rem;width:clamp(220px,26vw,380px);height:auto;filter:drop-shadow(0 4px 18px rgba(0,0,0,.35))}
 .hero-sub{font-family:"Cormorant Garamond",serif;font-size:clamp(1rem,2.2vw,1.5rem);font-weight:300;font-style:italic;color:rgba(253,250,244,.6);letter-spacing:.12em;margin-bottom:3rem}
 .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 .btn-gold{font-family:"Cinzel",serif;font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--navy);background:var(--gold);padding:.9rem 2rem;text-decoration:none;border:1px solid var(--gold);transition:all .35s ease;display:inline-block}
@@ -310,6 +313,7 @@ footer{background:#070D1E;padding:4.5rem 5rem;text-align:center;border-top:1px s
   nav{padding:1rem 1.5rem}
   .nav-links{display:none}
   .nav-toggle{display:flex}
+  .nav-cta-desktop{display:none}
   .inner{padding:4rem 1.5rem}
   .stats{padding:3rem 1.5rem}
   .heritage .inner,.winemaker .inner,.restaurant .inner,.visit-grid{grid-template-columns:1fr;gap:3rem}
@@ -619,8 +623,8 @@ footer a:hover { color: var(--gold); }
     <li><a href="#visit">Visit</a></li>
   </ul>
   <div style="display:flex;gap:.4rem;align-items:center">
-    <a href="wine-shop.html" class="nav-cta" style="background:transparent;color:var(--gold);border-color:rgba(201,168,76,.4)">Shop Wines</a>
-    <button onclick="openWineClubModal()" class="nav-cta" style="cursor:pointer;font-family:'Cinzel',serif;background:transparent;color:var(--gold);border-color:rgba(201,168,76,.4)">Wine Club</button>
+    <a href="wine-shop.html" class="nav-cta nav-cta-desktop" style="background:transparent;color:var(--gold);border-color:rgba(201,168,76,.4)">Shop Wines</a>
+    <button onclick="openWineClubModal()" class="nav-cta nav-cta-desktop" style="cursor:pointer;font-family:'Cinzel',serif;background:transparent;color:var(--gold);border-color:rgba(201,168,76,.4)">Wine Club</button>
     <a href="mailto:oppiestoep@kparys.co.za" class="nav-cta" style="background:var(--gold);color:var(--navy);border-color:var(--gold)">Book Now</a>
     <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
   </div>
@@ -635,6 +639,8 @@ footer a:hover { color: var(--gold); }
   <a href="#visit">Visit</a>
   <a href="wine-shop.html">Shop Wines</a>
   <a href="oppiestoep-menu.html">Restaurant Menu</a>
+  <button onclick="closeMobileMenu();openWineClubModal()">Wine Club</button>
+  <a href="mailto:oppiestoep@kparys.co.za">Book Now</a>
 </div>
 
 <!-- HERO -->
@@ -648,7 +654,7 @@ footer a:hover { color: var(--gold); }
       <div class="hero-diamond"></div>
       <div class="hero-rule-line r"></div>
     </div>
-    <h1 class="hero-title">Klein Parys<br><em>Vineyards</em></h1>
+    <h1 class="hero-title"><img class="hero-crest" src="images/klein-parys-crest-gold-hero.png" alt="Klein Parys Vineyards" width="380" height="354"></h1>
     <p class="hero-sub">One of the most historic wine estates in Paarl, since 1692</p>
     <div class="hero-btns">
       <a href="#wines" class="btn-gold">Discover Our Wines</a>
