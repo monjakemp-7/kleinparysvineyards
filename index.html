@@ -277,6 +277,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .tc-1 .tc-text,.tc-2 .tc-text{color:rgba(253,250,244,.6)}
 .tc-3 .tc-text,.tc-4 .tc-text{color:rgba(13,27,62,.62)}
 
+/* TESTIMONIALS */
+.testimonials{background:var(--white)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+.tsm{padding:2.4rem 2.2rem;border:1px solid rgba(201,168,76,.2);background:var(--cream);position:relative}
+.tsm-stars{color:var(--gold);font-size:.85rem;letter-spacing:.25em;margin-bottom:1.1rem}
+.tsm-text{font-family:"Cormorant Garamond",serif;font-size:1.25rem;font-style:italic;font-weight:300;color:var(--navy);line-height:1.6;margin-bottom:1.3rem}
+.tsm-author{font-family:"Cinzel",serif;font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-dk)}
+.tsm-author span{display:block;font-size:.85em;letter-spacing:.15em;color:rgba(13,27,62,.4);margin-top:.35rem;text-transform:none;font-family:"EB Garamond",serif}
+@media (max-width:960px){.testimonials-grid{grid-template-columns:1fr}}
+
 /* VISIT */
 .visit{background:var(--navy);position:relative;overflow:hidden}
 .visit::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(201,168,76,.05) 0%,transparent 70%)}
@@ -603,6 +613,34 @@ footer a:hover { color: var(--gold); }
         {"@type":"ListItem","position":4,"name":"Weddings","item":"https://www.kleinparysvineyards.co.za/#weddings"},
         {"@type":"ListItem","position":5,"name":"Visit Us","item":"https://www.kleinparysvineyards.co.za/#visit"}
       ]
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": {"@id": "https://www.kleinparysvineyards.co.za/#winery"},
+      "author": {"@type": "Person", "name": "Dawie Botha"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "Klein Parys Vineyards is a beautiful estate with rich history and charm. The wine tasting experience is excellent, offering a variety of quality wines that truly reflect the passion and craftsmanship of the winemakers. The setting is peaceful and scenic, making it ideal for a weekend outing or special occasion. The team is warm, knowledgeable, and welcoming, which makes every visit a memorable one."
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": {"@id": "https://www.kleinparysvineyards.co.za/#winery"},
+      "author": {"@type": "Person", "name": "Rudi Burger"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "A definite visit again, couldn't get enough of all. Food: 5/5, Service: 5/5, Atmosphere: 5/5."
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": {"@id": "https://www.kleinparysvineyards.co.za/#winery"},
+      "author": {"@type": "Person", "name": "David Frost"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "Great value for money and view."
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": {"@id": "https://www.kleinparysvineyards.co.za/#winery"},
+      "author": {"@type": "Person", "name": "Willie Willers"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "Enjoyed the atmosphere and have been at the estate before, definitely worth a visit. Nice restaurant and wine tasting."
     }
   ]
 }
@@ -1154,6 +1192,41 @@ footer a:hover { color: var(--gold); }
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="inner">
+    <div class="testimonials-header fu" style="text-align:center;margin-bottom:4rem">
+      <span class="lbl">Guest Reviews</span>
+      <h2 class="h2">What Our <em>Guests Say</em></h2>
+      <div class="orn c"><div class="orn-line"></div><div class="orn-dia"></div><div class="orn-line rev"></div></div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="tsm fu">
+        <div class="tsm-stars">★★★★★</div>
+        <p class="tsm-text">&ldquo;Klein Parys Vineyards is a beautiful estate with rich history and charm. The wine tasting experience is excellent, offering a variety of quality wines that truly reflect the passion and craftsmanship of the winemakers. The setting is peaceful and scenic, making it ideal for a weekend outing or special occasion.&rdquo;</p>
+        <div class="tsm-author">Dawie Botha<span>Google Review</span></div>
+      </div>
+      <div class="tsm fu d1">
+        <div class="tsm-stars">★★★★★</div>
+        <p class="tsm-text">&ldquo;A definite visit again, couldn&rsquo;t get enough of all. Food: 5/5, Service: 5/5, Atmosphere: 5/5.&rdquo;</p>
+        <div class="tsm-author">Rudi Burger<span>Google Review</span></div>
+      </div>
+      <div class="tsm fu d2">
+        <div class="tsm-stars">★★★★★</div>
+        <p class="tsm-text">&ldquo;Great value for money and view.&rdquo;</p>
+        <div class="tsm-author">David Frost<span>Google Review</span></div>
+      </div>
+      <div class="tsm fu d3">
+        <div class="tsm-stars">★★★★★</div>
+        <p class="tsm-text">&ldquo;Enjoyed the atmosphere and have been at the estate before &mdash; definitely worth a visit. Nice restaurant and wine tasting.&rdquo;</p>
+        <div class="tsm-author">Willie Willers<span>Google Review</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem" class="fu d4">
+      <a href="https://www.google.com/maps/place/Klein+Parys+Vineyards/@-33.7485718,18.9753906,826m/data=!3m2!1e3!4b1!4m6!3m5!1s0x1dcda872db6d8aa1:0x6b86ac0d38ea89c9!8m2!3d-33.7485718!4d18.9779655!16s%2Fg%2F1tcyny66?entry=ttu&g_ep=EgoyMDI2MDUyNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="btn-outline" style="font-size:.56rem">Read More Reviews on Google</a>
+    </div>
+  </div>
+</section>
 
 <!-- VISIT STRIP -->
 <div id="visit" style="background:var(--cream-dk);padding:3rem 5rem;position:relative">
@@ -1236,6 +1309,7 @@ footer a:hover { color: var(--gold); }
         <li><a href="#video" style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(253,250,244,.48);text-decoration:none">See the Farm</a></li>
         <li><a href="wine-shop.html" style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(253,250,244,.48);text-decoration:none;-webkit-text-decoration:none">Shop Wines</a></li>
         <li><a href="oppiestoep-menu.html" style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(253,250,244,.48);text-decoration:none;-webkit-text-decoration:none">Restaurant Menu</a></li>
+        <li><a href="#testimonials" style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(253,250,244,.48);text-decoration:none">Reviews</a></li>
         <li><a href="#visit" style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(253,250,244,.48);text-decoration:none">Visit Us</a></li>
       </ul>
     </div>
