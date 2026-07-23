@@ -42,6 +42,23 @@
 :root{--gold:#C9A84C;--gold-lt:#DFC070;--gold-pale:#F2E4BB;--gold-dk:#8B6914;--navy:#0D1B3E;--cream:#F8F3E8;--cream-dk:#EDE5D0;--white:#FDFAF4}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:"EB Garamond",Georgia,serif;background:var(--cream);color:var(--navy)}
+/* AGE GATE */
+.age-gate{position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;align-items:center;justify-content:center;padding:2rem}
+.age-gate.hide{display:none}
+.age-gate-box{max-width:460px;text-align:center;background:rgba(253,250,244,.03);border:1px solid rgba(201,168,76,.25);padding:3rem 2.5rem}
+.age-gate-box img{margin-bottom:1.2rem}
+.age-gate-box h2{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:2rem;color:var(--white);margin-bottom:1rem}
+.age-gate-box p{font-size:.95rem;line-height:1.7;color:rgba(253,250,244,.6);margin-bottom:1.6rem}
+.age-gate-actions{display:flex;gap:1rem;justify-content:center;margin-bottom:1.6rem;flex-wrap:wrap}
+.age-gate-actions button{font-family:"Cinzel",serif;font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;padding:.9rem 1.8rem;cursor:pointer;border:1px solid var(--gold);background:transparent;transition:all .3s}
+.age-gate-actions .age-gate-yes{background:var(--gold);color:var(--navy)}
+.age-gate-actions .age-gate-yes:hover{background:transparent;color:var(--gold)}
+.age-gate-actions .age-gate-no{color:rgba(253,250,244,.6);border-color:rgba(253,250,244,.25)}
+.age-gate-actions .age-gate-no:hover{border-color:rgba(253,250,244,.5);color:var(--white)}
+.age-gate-note{font-size:.75rem;color:rgba(253,250,244,.35);margin-bottom:0}
+.age-gate-note a{color:rgba(201,168,76,.7)}
+body.age-locked{overflow:hidden}
+@media(max-width:480px){.age-gate-box{padding:2.2rem 1.6rem}.age-gate-actions{flex-direction:column}}
 /* HEADER */
 .site-header{background:rgba(13,27,62,.98);padding:1rem 4rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(201,168,76,.18)}
 .header-logo{font-family:"Cinzel",serif;font-size:1rem;letter-spacing:.22em;color:var(--gold);text-decoration:none;line-height:1.2}
@@ -142,7 +159,9 @@ body{font-family:"EB Garamond",Georgia,serif;background:var(--cream);color:var(-
 .checkout-form{padding:1.8rem 2rem}
 .cf-field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
 .cf-field label{font-family:"Cinzel",serif;font-size:.5rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(13,27,62,.55)}
-.cf-field input,.cf-field textarea{font-family:"EB Garamond",serif;font-size:.95rem;color:var(--navy);border:1px solid rgba(13,27,62,.18);padding:.65rem .8rem;background:var(--cream);outline:none;resize:vertical}
+.cf-field label .cf-optional{text-transform:none;letter-spacing:0;font-family:"EB Garamond",serif;font-size:.75rem;color:rgba(13,27,62,.35)}
+.cf-field input,.cf-field textarea,.cf-field select{font-family:"EB Garamond",serif;font-size:.95rem;color:var(--navy);border:1px solid rgba(13,27,62,.18);padding:.65rem .8rem;background:var(--cream);outline:none;resize:vertical}
+.cf-hint{font-size:.78rem;color:rgba(13,27,62,.4);margin-top:-.15rem}
 .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .cf-delivery-choice{display:flex;gap:.8rem;margin-bottom:1.2rem}
 .cf-delivery-option{flex:1;border:1px solid rgba(13,27,62,.18);padding:.8rem;cursor:pointer;text-align:center;transition:all .2s}
@@ -410,6 +429,38 @@ body{font-family:"EB Garamond",Georgia,serif;background:var(--cream);color:var(-
 </script>
 </head>
 <body>
+
+<div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle">
+  <div class="age-gate-box">
+    <img src="images/klein-parys-crest-gold.png" alt="" width="56" height="52">
+    <h2 id="ageGateTitle">Are You 18 or Older?</h2>
+    <p>Klein Parys Vineyards produces and sells alcoholic beverages. You must be of legal drinking age to view this website.</p>
+    <div class="age-gate-actions">
+      <button type="button" class="age-gate-yes" onclick="ageGateConfirm(true)">Yes, I'm 18 or Older</button>
+      <button type="button" class="age-gate-no" onclick="ageGateConfirm(false)">No, I'm Under 18</button>
+    </div>
+    <p class="age-gate-note">Not from South Africa? You must still meet the legal drinking age in your own country. Please enjoy our wines responsibly.</p>
+  </div>
+</div>
+<script>
+(function(){
+  var verified = localStorage.getItem("kpv_age_verified") === "true";
+  if (verified) {
+    document.getElementById("ageGate").classList.add("hide");
+  } else {
+    document.body.classList.add("age-locked");
+  }
+})();
+function ageGateConfirm(isAdult) {
+  if (isAdult) {
+    localStorage.setItem("kpv_age_verified", "true");
+    document.getElementById("ageGate").classList.add("hide");
+    document.body.classList.remove("age-locked");
+  } else {
+    window.location.href = "https://www.google.com";
+  }
+}
+</script>
 
 <header class="site-header">
   <a href="index.html" class="header-logo">Klein Parys <span>Vineyards &middot; Est. 1692</span></a>
@@ -765,8 +816,9 @@ body{font-family:"EB Garamond",Georgia,serif;background:var(--cream);color:var(-
           <input id="cfName" name="name" type="text" required>
         </div>
         <div class="cf-field">
-          <label for="cfPhone">Phone</label>
-          <input id="cfPhone" name="phone" type="tel" required>
+          <label for="cfPhone">Cellphone Number</label>
+          <input id="cfPhone" name="phone" type="tel" inputmode="tel" placeholder="082 123 4567" maxlength="17" required>
+          <span class="cf-hint">South African number, e.g. 082 123 4567 or +27 82 123 4567</span>
         </div>
       </div>
       <div class="cf-field">
@@ -787,8 +839,41 @@ body{font-family:"EB Garamond",Georgia,serif;background:var(--cream);color:var(-
 
       <div class="cf-address-fields show" id="cfAddressFields">
         <div class="cf-field">
-          <label for="cfAddress">Delivery Address</label>
-          <textarea id="cfAddress" name="address" rows="3"></textarea>
+          <label for="cfStreet">Street Address</label>
+          <input id="cfStreet" name="street" type="text" placeholder="12 Vineyard Road">
+        </div>
+        <div class="cf-field">
+          <label for="cfSuburb">Suburb <span class="cf-optional">(optional)</span></label>
+          <input id="cfSuburb" name="suburb" type="text">
+        </div>
+        <div class="cf-row">
+          <div class="cf-field">
+            <label for="cfCity">Town / City</label>
+            <input id="cfCity" name="city" type="text" placeholder="Paarl">
+          </div>
+          <div class="cf-field">
+            <label for="cfPostalCode">Postal Code</label>
+            <input id="cfPostalCode" name="postalCode" type="text" inputmode="numeric" maxlength="4" placeholder="7646">
+          </div>
+        </div>
+        <div class="cf-field">
+          <label for="cfProvince">Province</label>
+          <select id="cfProvince" name="province">
+            <option value="">Select province&hellip;</option>
+            <option>Eastern Cape</option>
+            <option>Free State</option>
+            <option>Gauteng</option>
+            <option>KwaZulu-Natal</option>
+            <option>Limpopo</option>
+            <option>Mpumalanga</option>
+            <option>Northern Cape</option>
+            <option>North West</option>
+            <option>Western Cape</option>
+          </select>
+        </div>
+        <div class="cf-field">
+          <label for="cfInstructions">Delivery Instructions <span class="cf-optional">(optional)</span></label>
+          <textarea id="cfInstructions" name="instructions" rows="2" placeholder="Gate code, safe place to leave parcel, best time for delivery, etc."></textarea>
         </div>
       </div>
 
@@ -901,8 +986,17 @@ function setDeliveryMethod(method) {
   document.getElementById("cfShipOption").classList.toggle("active", method === "ship");
   document.getElementById("cfPickupOption").classList.toggle("active", method === "pickup");
   document.getElementById("cfAddressFields").classList.toggle("show", method === "ship");
-  document.getElementById("cfAddress").required = method === "ship";
+  const required = method === "ship";
+  document.getElementById("cfStreet").required = required;
+  document.getElementById("cfCity").required = required;
+  document.getElementById("cfPostalCode").required = required;
+  document.getElementById("cfProvince").required = required;
   renderCart();
+}
+
+const SA_PHONE_REGEX = /^(?:\+27|0)[1-9]\d{8}$/;
+function normalizePhone(v) {
+  return v.replace(/[\s-]/g, "");
 }
 
 function openCheckoutModal() {
@@ -928,17 +1022,38 @@ document.getElementById("checkoutForm").addEventListener("submit", async functio
     errorEl.classList.add("show");
     return;
   }
+  const phone = normalizePhone(document.getElementById("cfPhone").value.trim());
+  if (!SA_PHONE_REGEX.test(phone)) {
+    errorEl.textContent = "Please enter a valid South African phone number, e.g. 082 123 4567.";
+    errorEl.classList.add("show");
+    return;
+  }
   const customer = {
     name: document.getElementById("cfName").value.trim(),
     email: document.getElementById("cfEmail").value.trim(),
-    phone: document.getElementById("cfPhone").value.trim(),
+    phone,
     deliveryMethod: currentDeliveryMethod,
-    address: currentDeliveryMethod === "ship" ? document.getElementById("cfAddress").value.trim() : "",
+    address: currentDeliveryMethod === "ship" ? {
+      street: document.getElementById("cfStreet").value.trim(),
+      suburb: document.getElementById("cfSuburb").value.trim(),
+      city: document.getElementById("cfCity").value.trim(),
+      province: document.getElementById("cfProvince").value,
+      postalCode: document.getElementById("cfPostalCode").value.trim(),
+      instructions: document.getElementById("cfInstructions").value.trim(),
+    } : null,
   };
-  if (currentDeliveryMethod === "ship" && !customer.address) {
-    errorEl.textContent = "Please enter a delivery address.";
-    errorEl.classList.add("show");
-    return;
+  if (currentDeliveryMethod === "ship") {
+    const a = customer.address;
+    if (!a.street || !a.city || !a.province || !a.postalCode) {
+      errorEl.textContent = "Please fill in your street address, town, province and postal code.";
+      errorEl.classList.add("show");
+      return;
+    }
+    if (!/^\d{4}$/.test(a.postalCode)) {
+      errorEl.textContent = "Please enter a valid 4-digit postal code.";
+      errorEl.classList.add("show");
+      return;
+    }
   }
   submitBtn.disabled = true;
   submitBtn.textContent = "Redirecting to secure payment...";

@@ -51,17 +51,34 @@ module.exports = async function handler(req, res) {
   }
   const name = String(customer.name || "").trim();
   const email = String(customer.email || "").trim();
-  const phone = String(customer.phone || "").trim();
+  const phone = String(customer.phone || "").trim().replace(/[\s-]/g, "");
   const deliveryMethod = customer.deliveryMethod === "pickup" ? "pickup" : "ship";
-  const address = String(customer.address || "").trim();
+  const rawAddress = (customer.address && typeof customer.address === "object") ? customer.address : {};
+  const street = String(rawAddress.street || "").trim();
+  const suburb = String(rawAddress.suburb || "").trim();
+  const city = String(rawAddress.city || "").trim();
+  const province = String(rawAddress.province || "").trim();
+  const postalCode = String(rawAddress.postalCode || "").trim();
+  const instructions = String(rawAddress.instructions || "").trim();
 
   if (!name || !email || !phone) {
     res.status(400).json({ error: "Please fill in your name, email and phone number." });
     return;
   }
-  if (deliveryMethod === "ship" && !address) {
-    res.status(400).json({ error: "Please enter a delivery address, or choose estate collection." });
+  const saPhonePattern = /^(?:\+27|0)[1-9]\d{8}$/;
+  if (!saPhonePattern.test(phone)) {
+    res.status(400).json({ error: "Please enter a valid South African phone number." });
     return;
+  }
+  if (deliveryMethod === "ship") {
+    if (!street || !city || !province || !postalCode) {
+      res.status(400).json({ error: "Please enter your full delivery address (street, town, province and postal code)." });
+      return;
+    }
+    if (!/^\d{4}$/.test(postalCode)) {
+      res.status(400).json({ error: "Please enter a valid 4-digit postal code." });
+      return;
+    }
   }
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailPattern.test(email)) {
@@ -112,6 +129,10 @@ module.exports = async function handler(req, res) {
   const total = subtotal + deliveryFee;
   const amountInCents = total * 100;
 
+  const deliveryAddressFormatted = deliveryMethod === "ship"
+    ? [street, suburb, city, province, postalCode].filter(Boolean).join(", ")
+    : "Estate collection";
+
   const payload = {
     amount: amountInCents,
     currency: "ZAR",
@@ -125,7 +146,13 @@ module.exports = async function handler(req, res) {
       customerEmail: email,
       customerPhone: phone,
       deliveryMethod,
-      deliveryAddress: deliveryMethod === "ship" ? address : "Estate collection",
+      deliveryAddress: deliveryAddressFormatted,
+      deliveryStreet: street,
+      deliverySuburb: suburb,
+      deliveryCity: city,
+      deliveryProvince: province,
+      deliveryPostalCode: postalCode,
+      deliveryInstructions: instructions,
       orderSummary: orderSummaryParts.join(", ").slice(0, 500),
     },
   };
